@@ -1,0 +1,11 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my $what = 'fred|barney';
+
+while(<STDIN>) {
+   /(($what){3})/;
+   print "$1\n";
+}

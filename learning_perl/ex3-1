@@ -1,0 +1,9 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+print "Enter some strings separated by newline, press Ctrl+D when finished\n";
+@str_list = <STDIN>;
+
+@str_list = reverse @str_list;
+
+print @str_list;

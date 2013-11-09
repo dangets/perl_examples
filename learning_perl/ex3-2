@@ -1,0 +1,18 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+@flinstones = qw( fred betty barney dino wilma pebbles bamm-bamm );
+
+print "Enter numbers 1-7 on separate lines.  Press Ctrl+D when finished\n";
+
+chomp( @input_num = <STDIN> );
+
+foreach $num (@input_num) {
+   if ($num < 1 || $num > 7) {
+      print "\n ! $num is out of range. ! \n";
+   } else {
+      print $flinstones[$num-1]." ";
+   }
+}
+
+print "\n";

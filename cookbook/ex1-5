@@ -1,0 +1,16 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $string="an apple a day";
+my %seen=();
+
+foreach my $byte (split //, $string) {
+   $seen{$byte}++;
+}
+
+print "unique chars are: ", sort(keys %seen), "\n";
+
+foreach my $key (keys %seen) {
+   print "$key: $seen{$key}\n";
+}

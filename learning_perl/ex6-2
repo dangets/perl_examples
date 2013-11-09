@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my %str_hash;
+
+print "Enter strings separated by <CR>.  Press Ctrl+D when finished.\n";
+
+while ( <STDIN> ) {
+   chomp;
+   $str_hash{$_}+=1;
+}
+
+foreach ( keys %str_hash ) {
+   print "$_ was typed $str_hash{$_} times."."\n";
+}

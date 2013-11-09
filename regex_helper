@@ -1,0 +1,79 @@
+#!/mu/bin/perl
+
+use strict;
+use warnings;
+use Tk;
+use Tk::ROText;
+
+my $string = "";
+my $regex = "";
+my $match;
+
+my $mw = MainWindow->new;
+my $controlFrame = $mw->Frame()->pack( -side => "top", -expand => 0, -fill => "x" );
+my $row = 0;
+my $stringLabel = $controlFrame->Label( -text => "Text:" ) 
+    ->grid( -column => 0, -row => $row, -sticky => "w" );
+my $stringEntry = $controlFrame->Entry( -textvariable => \$string ) 
+    ->grid( -column => 1, -row => $row, -sticky => "we" );
+$row++;
+my $regexLabel = $controlFrame->Label( -text => "Regex (perl style):" ) 
+    ->grid( -column => 0, -row => $row, -sticky => "w" );
+my $regexEntry = $controlFrame->Entry( -textvariable => \$regex ) 
+    ->grid( -column => 1, -row => $row, -sticky => "we" );
+$row++;
+my $solutionLabel = $controlFrame->Label( -text => "Match:" ) 
+    ->grid( -column => 0, -row => $row, -sticky => "w" );
+my $solutionEntry = $controlFrame->Entry( -textvariable => \$match ) 
+    ->grid( -column => 1, -row => $row, -sticky => "we" );
+$row++;
+my $captureBox = $mw->Scrolled("ROText", -scrollbars=>"oe", -height=>10) 
+    ->pack( -side => 'top', -expand => 1, -fill => "both");
+my $evalButton = $mw->Button( -text => "Eval", -command => \&evalRegex )
+    ->pack( -side => 'left' );
+my $exitButton = $mw->Button( -text => "Exit", -command => [ sub {exit} ] )
+    ->pack( -side => 'right' );
+
+$controlFrame->gridColumnconfigure( 0, -weight => 0 );
+$controlFrame->gridColumnconfigure( 1, -weight => 1 );
+
+$regexEntry->bind( '<Key>'  => \&evalRegex );
+$stringEntry->bind( '<Key>' => \&evalRegex );
+
+MainLoop;
+
+sub evalRegex {
+    my $head;
+    my $tail;
+    if ( $string =~ /$regex/ ) {
+        $head  = $`;
+        $tail  = $';
+        $match = "$head==>$&<==$tail";
+        $captureBox->delete( "1.0", 'end' );
+        if ( defined $1 )  { $captureBox->insert( 'end', "1  ->$1<-\n" ); }
+        if ( defined $2 )  { $captureBox->insert( 'end', "2  ->$2<-\n" ); }
+        if ( defined $3 )  { $captureBox->insert( 'end', "3  ->$3<-\n" ); }
+        if ( defined $4 )  { $captureBox->insert( 'end', "4  ->$4<-\n" ); }
+        if ( defined $5 )  { $captureBox->insert( 'end', "5  ->$5<-\n" ); }
+        if ( defined $6 )  { $captureBox->insert( 'end', "6  ->$6<-\n" ); }
+        if ( defined $7 )  { $captureBox->insert( 'end', "7  ->$7<-\n" ); }
+        if ( defined $8 )  { $captureBox->insert( 'end', "8  ->$8<-\n" ); }
+        if ( defined $9 )  { $captureBox->insert( 'end', "9  ->$9<-\n" ); }
+        if ( defined $10 ) { $captureBox->insert( 'end', "10 ->$10<-\n" ); }
+        if ( defined $11 ) { $captureBox->insert( 'end', "11 ->$11<-\n" ); }
+        if ( defined $12 ) { $captureBox->insert( 'end', "12 ->$12<-\n" ); }
+        if ( defined $13 ) { $captureBox->insert( 'end', "13 ->$13<-\n" ); }
+        if ( defined $14 ) { $captureBox->insert( 'end', "14 ->$14<-\n" ); }
+        if ( defined $15 ) { $captureBox->insert( 'end', "15 ->$15<-\n" ); }
+        if ( defined $16 ) { $captureBox->insert( 'end', "16 ->$16<-\n" ); }
+        if ( defined $17 ) { $captureBox->insert( 'end', "17 ->$17<-\n" ); }
+        if ( defined $18 ) { $captureBox->insert( 'end', "18 ->$18<-\n" ); }
+        if ( defined $19 ) { $captureBox->insert( 'end', "19 ->$19<-\n" ); }
+        if ( defined $20 ) { $captureBox->insert( 'end', "20 ->$20<-\n" ); }
+    } ## end if ( $string =~ /$regex/)
+    else {
+        $match = "";
+        $captureBox->delete( "1.0", 'end' );
+    }
+} ## end sub evalRegex
+

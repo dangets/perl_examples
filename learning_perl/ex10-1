@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my $answer = int(1 + rand 100);
+
+print "I'm thinking of a number between 1 and 100... guess it\n";
+
+while(1) {
+   chomp (my $guess=<STDIN>);
+   
+   if ($guess =~ /quit|exit|^\s*$/i) {
+      last;
+   }
+   
+   if ($guess == $answer) {
+      print "You got it!!\n";
+      last;
+   }
+
+   ($guess < $answer) ? (print "Higher than $guess: ") : (print "Lower than $guess: ");
+}

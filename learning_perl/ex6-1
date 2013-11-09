@@ -1,0 +1,15 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my %name_list = ( 
+   "fred" => "flinstone",
+   "barney" => "rubble",
+   "wilma" => "flinstone",
+);
+
+print "Enter a name: ";
+chomp( my $input_name = <STDIN> );
+
+print "The last name you wanted is: $name_list{$input_name}\n";

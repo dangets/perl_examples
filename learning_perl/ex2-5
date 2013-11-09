@@ -1,0 +1,9 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+print "Enter a string: ";
+$input_string = <STDIN>;
+print "Enter a number: ";
+chomp ($input_num = <STDIN>);
+
+print ${input_string}x$input_num;

@@ -1,0 +1,8 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+print "Enter two numbers separated by <Return>: ";
+$a=<STDIN>;
+$b=<STDIN>;
+
+print "The product of the two numbers is: ",$a*$b,"\n";

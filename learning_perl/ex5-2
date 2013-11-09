@@ -1,0 +1,24 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+print "Enter random strings separated by <CR>s.  Press Ctrl+D when finished.\n";
+chomp(my @inp_list = <STDIN>);
+
+print "Enter which column you want your words (right) aligned upon: ";
+chomp(my $col=<STDIN>);
+
+my $num_rulers = $col/10;
+while ($num_rulers>0) {
+   &print_ruler;
+   $num_rulers--;
+}
+print "\n";
+
+
+printf "".("%${col}s\n" x @inp_list), @inp_list;
+
+sub print_ruler {
+   print "1234567890";
+}

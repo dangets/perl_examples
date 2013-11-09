@@ -1,0 +1,28 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my %do_these;
+foreach (@ARGV) {	#create hash w/ all input files
+   unless ($_ =~ /\.bak$/) {
+      $do_these{$_}=1;
+   }
+}
+
+while(<>) {
+   if (/^## Copyright/) {
+      delete $do_these{$ARGV};
+      print "skipped $ARGV\n";
+   }
+}
+@ARGV = sort keys %do_these;
+
+$^I=".bak";
+
+if (@ARGV>0) {
+   while(<>) {
+      s:^#!/usr/bin/perl.*:#!/usr/bin/perl -w\n## Copyright (C) 2006 by Yours Truly ##:;
+      print;
+   }
+}

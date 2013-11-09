@@ -1,0 +1,27 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my $in = $ARGV[0];
+
+unless (defined $in) {
+   die "Usage: $0 filename";
+}
+
+my $out = $in;
+
+$out =~ s/(\.\w+)?$/.out/;		#substitute any existing extension w/ .out
+unless (open IN, "<$in") {
+   die "Can't open '$in': $!";
+}
+unless (open OUT, ">$out") {
+   die "Can't write '$out': $!";
+}
+while (<IN>) {
+   chomp;		#remove any newlines
+   s/fred/\n/gi;	#\n is a placeholder
+   s/wilma/Fred/gi;	#replace all wilmas with Freds
+   s/\n/Wilma/g;	#replace placeholder with Wilma(s)
+   print OUT "$_\n";	#print line w/ newline
+}

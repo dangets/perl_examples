@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+print "Type in a directory: ";
+chomp (my $change_to_dir = <STDIN>);
+
+if ($change_to_dir eq "") {
+   $change_to_dir = "/u/danielge";
+}
+
+chdir $change_to_dir or die "cannot chdir to $(change_to_dir): $!";
+
+my @all_files = glob ".* *";
+foreach (@all_files) {
+   print "$_\n";
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+@lines = `perldoc -u -f atan2`;
+foreach(@lines) {
+	s/\w<([^>]+)>/\U$1/g;
+	print;
+}

@@ -1,0 +1,14 @@
+#!/usr/bin/perl -w
+## Copyright (C) 2006 by Yours Truly ##
+
+use strict;
+
+my @inp_array = ( );
+
+while(<>) {
+   push @inp_array, $_;
+}
+
+@inp_array = reverse @inp_array;
+
+print @inp_array;
